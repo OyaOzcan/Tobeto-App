@@ -15,7 +15,6 @@ class _CertificateTabState extends State<CertificateTab> {
   File? _selectedFile;
 
   Future<void> _pickFile() async {
-    // Tarayıcıdan dosya seçme desteği ile
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['jpg', 'pdf', 'png'],
@@ -37,7 +36,6 @@ class _CertificateTabState extends State<CertificateTab> {
       return;
     }
 
-    // Firebase Storage'a dosya yükleme
     String filePath =
         'certificates/$userId/${_selectedFile!.path.split('/').last}';
     Reference storageReference = FirebaseStorage.instance.ref().child(filePath);
@@ -46,7 +44,6 @@ class _CertificateTabState extends State<CertificateTab> {
     await uploadTask.whenComplete(() async {
       String downloadURL = await storageReference.getDownloadURL();
 
-      // Firestore'a sertifika URL'sini kaydet
       FirebaseFirestore.instance
           .collection('users')
           .doc(userId)
@@ -58,8 +55,6 @@ class _CertificateTabState extends State<CertificateTab> {
     }).catchError((error) {
       print("Sertifika yükleme hatası: $error");
     });
-
-    // Başarılı kayıt sonrası kullanıcıyı önceki sayfaya yönlendir
     Navigator.pop(context, true);
   }
 

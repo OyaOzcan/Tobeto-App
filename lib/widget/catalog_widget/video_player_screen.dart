@@ -2,15 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
 
-// void main() => runApp(MaterialApp(
-//       home: VideoApp(
-//         videoURL:
-//             'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
-//         title: 'Video Başlığı',
-//         subtitle: 'Video Alt Başlığı',
-//       ),
-//     ));
-
 class VideoApp extends StatefulWidget {
   final String videoURL;
   final String title;

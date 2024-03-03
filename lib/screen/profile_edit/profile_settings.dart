@@ -1,14 +1,11 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tobeto_app/widget/profile_widgets/custom_date_picker.dart';
-import 'package:tobeto_app/widget/profile_widgets/custom_skills_dropdown.dart';
-import 'package:tobeto_app/widget/profile_widgets/custom_socialmedia_dropdown.dart';
 import 'package:tobeto_app/widget/profile_widgets/custom_text_field.dart';
 
 List<String> cityList = <String>[
@@ -217,7 +214,6 @@ class _ProfilTabState extends State<ProfilTab> {
     if (userId == null) return;
 
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
-    // Kullanıcı profil bilgilerini 'profiles' alt koleksiyonuna kaydediyoruz.
     final DocumentReference profileDocRef = firestore
         .collection('users')
         .doc(userId)
@@ -233,25 +229,18 @@ class _ProfilTabState extends State<ProfilTab> {
       'email': _emailController.text,
       'country': _countryController.text,
       'city': _selectedCity,
-      // Diğer profil alanları buraya eklenebilir.
     };
 
-    // Profil bilgilerini Firestore'a kaydet
     await profileDocRef.set(profileData, SetOptions(merge: true));
 
-    // Profil resmini Firebase Storage'a kaydet ve URL'yi Firestore'a kaydet
     if (_image != null) {
       String fileName = 'profilePictures/${userId}.jpg';
       Reference storageReference =
           FirebaseStorage.instance.ref().child(fileName);
       await storageReference.putFile(_image!);
       String downloadURL = await storageReference.getDownloadURL();
-      // 'mainProfile' belgesini güncelleyerek profil resmi URL'sini ekleyin
       await profileDocRef.update({'profilePictureURL': downloadURL});
     }
-
-    // Başarılı kayıt sonrası işlemler: Profil sayfasına yönlendir ve verileri yenile
-    Navigator.pop(
-        context, true); // true, başarılı bir kayıt işlemi yapıldığını belirtir.
+    Navigator.pop(context, true); 
   }
 }

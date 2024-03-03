@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:tobeto_app/screen/catalog.dart';
 import 'package:tobeto_app/screen/profil_edit.dart';
 import 'package:tobeto_app/screen/reviews.dart';
-// import 'package:google_fonts/google_fonts.dart';
 import 'package:tobeto_app/widget/home_widget/announcementandnews.dart';
 import 'package:tobeto_app/widget/home_widget/applications.dart';
 import 'package:tobeto_app/widget/home_widget/education.dart';

@@ -245,13 +245,11 @@ class _ProfilePageState extends State<ProfilePage> {
         .get();
 
     List<String> certificateURLs = certificateSnapshot.docs.map((doc) {
-      // Hatanın giderilmesi için ek açıklık
       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
       return data['certificateURL'] as String;
     }).toList();
 
     setState(() {
-      // Hata nedeniyle mevcut olmayabilir, control eklenmeli
       certificateURL = certificateURLs.isNotEmpty ? certificateURLs.first : '';
     });
   }

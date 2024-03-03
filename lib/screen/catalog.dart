@@ -44,7 +44,7 @@ class _CatalogState extends State<Catalog> {
     setState(() {
       _currentPage = page;
     });
-    _onSearchChanged(); // Sayfa değiştiğinde tekrar arama yap
+    _onSearchChanged();
   }
 
   @override
@@ -124,7 +124,7 @@ class _CatalogState extends State<Catalog> {
                 return Column(
                   children: [
                     if (pageDocs.isEmpty &&
-                        totalCards == 0) // Eğer hiç kart yoksa
+                        totalCards == 0) 
                       Text('Eğitim bulunamadı.'),
                     for (var doc in pageDocs)
                       Padding(
@@ -140,7 +140,7 @@ class _CatalogState extends State<Catalog> {
                           ),
                         ),
                       ),
-                    if (totalPages > 1) // Birden fazla sayfa varsa
+                    if (totalPages > 1) 
                       PaginationWidget(
                         currentPage: _currentPage,
                         totalPages: totalPages,

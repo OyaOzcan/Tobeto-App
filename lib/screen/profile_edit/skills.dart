@@ -3,16 +3,10 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:tobeto_app/screen/profile_edit/education.dart';
-import 'package:tobeto_app/screen/profile_edit/profile_settings.dart';
-import 'package:tobeto_app/screen/profile_edit/work.dart';
-import 'package:tobeto_app/widget/profile_widgets/custom_date_picker.dart';
 import 'package:tobeto_app/widget/profile_widgets/custom_skills_dropdown.dart';
 import 'package:tobeto_app/widget/profile_widgets/custom_socialmedia_dropdown.dart';
-import 'package:tobeto_app/widget/profile_widgets/custom_text_field.dart';
 
 List<String> educationList = <String>[
   'Lisans',
@@ -229,13 +223,9 @@ class _SkillsTabState extends State<SkillsTab> {
       return;
     }
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
-
-    // `skills` yerine, `users` koleksiyonu altındaki `userId` ile belirtilen kullanıcıya ve onun `skills` alt koleksiyonuna erişim sağla
     await firestore.collection('users').doc(userId).collection('skills').add({
       'skill': _selectedSkill,
     });
-
-    // Başarılı kayıt sonrası kullanıcıyı önceki sayfaya yönlendir
     Navigator.pop(context, true);
   }
 }

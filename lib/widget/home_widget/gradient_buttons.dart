@@ -19,21 +19,21 @@ class GradientButton extends StatelessWidget {
     double width = MediaQuery.of(context).size.width * 0.8;
     return Padding(
       padding: const EdgeInsets.symmetric(
-          horizontal: 12, vertical: 8), // Dışarıdan padding
+          horizontal: 12, vertical: 8), 
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(0), // Sol üst köşe sabit
-            topRight: Radius.circular(20), // Sağ üst köşe yuvarlak
-            bottomLeft: Radius.circular(30), // Sol alt köşe yuvarlak
-            bottomRight: Radius.circular(30), // Sağ alt köşe yuvarlak
+            topLeft: Radius.circular(0),
+            topRight: Radius.circular(20), 
+            bottomLeft: Radius.circular(30),
+            bottomRight: Radius.circular(30),
           ),
         ),
-        elevation: 8, // Daha belirgin gölge
+        elevation: 8,
         child: Container(
           width: width,
-          height: 160, // Yükseklik arttırıldı
-          padding: EdgeInsets.only(top: 16, bottom: 16), // İç padding
+          height: 160, 
+          padding: EdgeInsets.only(top: 16, bottom: 16), 
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(0),
@@ -49,14 +49,14 @@ class GradientButton extends StatelessWidget {
           ),
           child: Column(
             mainAxisAlignment:
-                MainAxisAlignment.spaceBetween, // İçeriği dikey olarak ayarla
+                MainAxisAlignment.spaceBetween, 
             children: [
               Text(
                 text,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
-                  fontSize: 20, // Metin boyutunu arttır
+                  fontSize: 20, 
                 ),
               ),
               ElevatedButton(
@@ -64,16 +64,15 @@ class GradientButton extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Theme.of(context)
                       .colorScheme
-                      .primary, // Buton arka plan rengi
+                      .primary, 
                   shape: RoundedRectangleBorder(
                     borderRadius:
-                        BorderRadius.circular(18), // Buton köşe yuvarlaklığı
+                        BorderRadius.circular(18), 
                   ),
-                  // Padding yok, çünkü boyutları aşağıda belirliyoruz
                 ),
                 child: Container(
-                  width: 210, // Butonu konteynırın genişliğine göre genişlet
-                  height: 20, // Butonun yüksekliği
+                  width: 210,
+                  height: 20,
                   alignment: Alignment.center,
                   child: Text(
                     'Başla',

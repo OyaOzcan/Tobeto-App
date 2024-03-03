@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tobeto_app/widget/profile_widgets/custom_socialmedia_dropdown.dart';
 
-// Sosyal medya seçeneklerini tanımlayın
 List<SocialMedia> socialMediaOptions = [
   SocialMedia(name: 'Twitter'),
   SocialMedia(name: 'Facebook'),
@@ -25,7 +24,6 @@ class _SocialMediaTabState extends State<SocialMediaTab> {
   @override
   void initState() {
     super.initState();
-    // İlk sosyal medya seçeneğini başlangıç değeri olarak ayarlayın
     selectedMedia = socialMediaOptions.first;
   }
 

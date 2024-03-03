@@ -9,8 +9,6 @@ class CatalogWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQuery = MediaQuery.of(context);
-
-    // Ekran genişliği
     double screenWidth = mediaQuery.size.width;
     return GestureDetector(
       onTap: () {

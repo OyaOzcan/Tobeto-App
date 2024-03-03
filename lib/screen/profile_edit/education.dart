@@ -1,13 +1,8 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:tobeto_app/screen/profile_edit/profile_settings.dart';
-import 'package:tobeto_app/screen/profile_edit/work.dart';
 import 'package:tobeto_app/widget/profile_widgets/custom_date_picker.dart';
 import 'package:tobeto_app/widget/profile_widgets/custom_skills_dropdown.dart';
 import 'package:tobeto_app/widget/profile_widgets/custom_socialmedia_dropdown.dart';
@@ -258,28 +253,20 @@ class _EductionTabState extends State<EductionTab> {
   void _saveEducationToFirestore() async {
     final String? userId = FirebaseAuth.instance.currentUser?.uid;
     if (userId == null) {
-      // Handle the case where the user ID is not available
       print("User ID is null. Cannot save education data.");
       return;
     }
 
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
-
-    // Point to a subcollection named "education" under the current user's document
     final CollectionReference educationCollection =
         firestore.collection('users').doc(userId).collection('education');
-
-    // Create a new document in the "education" subcollection
     await educationCollection.add({
       'university': _universityController.text,
       'section': _sectionController.text,
       'educationStatus': _selectedEducation,
       'startDate': _startEducationDateController.text.trim(),
       'graduateDate': _graduateDateController.text.trim(),
-      // Include other relevant fields
     });
-
-    // Başarılı kayıt sonrası kullanıcıyı önceki sayfaya yönlendir
     Navigator.pop(context, true);
   }
 }

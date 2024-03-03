@@ -38,27 +38,23 @@ class _ApplicationsState extends State<Applications> {
 
         if (appData != null) {
           appData['state'] =
-              applicationRef['state']; // Kullanıcıya özel durum bilgisi
-
-          // Ekstra başvurular için işlemler
+              applicationRef['state']; 
           if (appData.containsKey('applications') &&
               appData['applications'] is List) {
             List<dynamic> extraApplications = appData['applications'];
             for (var extraApp in extraApplications) {
               if (extraApp is Map<String, dynamic>) {
-                // Ekstra başvuruları ana başvuru listesine ekle
                 applicationsData.add({
                   'title': extraApp['title'] ?? 'Ek başlık bilinmiyor',
                   'subtitle':
                       extraApp['subtitle'] ?? 'Ek alt başlık bilinmiyor',
                   'subtitle1':
                       extraApp['subtitle1'] ?? 'Ek açıklama bilinmiyor',
-                  'state': appData['state'], // Ana başvurunun durumu
+                  'state': appData['state'],
                 });
               }
             }
           } else {
-            // Eğer 'applications' array'i yoksa veya beklenen formatta değilse, ana başvuruyu listeye ekle
             applicationsData.add(appData);
           }
         }
@@ -124,10 +120,9 @@ class _ApplicationsState extends State<Applications> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Row(
         children: [
-          // Sol taraftaki dikey renk şeridi
           Container(
             width: 5,
-            height: 125, // Kartın içerik boyutuna bağlı olarak ayarlanabilir
+            height: 125, 
             decoration: BoxDecoration(
               color: stateColor,
               borderRadius: BorderRadius.only(
@@ -136,8 +131,7 @@ class _ApplicationsState extends State<Applications> {
               ),
             ),
           ),
-          SizedBox(width: 1), // Şerit ile içerik arasında boşluk
-          // Kartın içeriği
+          SizedBox(width: 1), 
           Expanded(
             child: Padding(
               padding: EdgeInsets.all(16),
@@ -158,7 +152,7 @@ class _ApplicationsState extends State<Applications> {
                                       .colorScheme
                                       .onBackground),
                           overflow: TextOverflow.ellipsis,
-                          maxLines: 2, // Başlık 2 satıra kadar uzayabilir
+                          maxLines: 2,
                         ),
                       ),
                       Container(

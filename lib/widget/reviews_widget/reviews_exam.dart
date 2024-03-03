@@ -14,21 +14,18 @@ class ReviewsExam extends StatefulWidget {
 class _ReviewsExamState extends State<ReviewsExam> {
   Map<int, int?> selectedOptions = {};
   late List<Map<String, dynamic>> questions =
-      []; // Firestore'dan gelen soruları tutacak liste
+      []; 
 
   @override
   void initState() {
     super.initState();
-    fetchQuestions(); // Firestore'dan soruları getir
+    fetchQuestions(); 
   }
 
   void fetchQuestions() async {
     try {
-      // Firestore'dan "reviews-exam" koleksiyonundaki belgeleri getir
       QuerySnapshot querySnapshot =
           await FirebaseFirestore.instance.collection('reviews-exam').get();
-
-      // Her belgeyi dönerek soruları listeye ekle
       querySnapshot.docs.forEach((doc) {
         Map<String, dynamic> question = {
           'question': doc['question'],
@@ -38,7 +35,6 @@ class _ReviewsExamState extends State<ReviewsExam> {
         questions.add(question);
       });
 
-      // setState ile yeniden çizilmesini sağla
       setState(() {});
     } catch (e) {
       print('Error fetching questions: $e');
@@ -119,7 +115,7 @@ class _ReviewsExamState extends State<ReviewsExam> {
               else
                 Center(
                   child:
-                      CircularProgressIndicator(), // Sorular yüklenene kadar dön
+                      CircularProgressIndicator(), 
                 ),
               SizedBox(height: 20),
               ElevatedButton(
@@ -188,7 +184,7 @@ class _ReviewsExamState extends State<ReviewsExam> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(
-              '${widget.examTitle}\nSınav Sonucu:'), // Sınav başlığı eklendi
+              '${widget.examTitle}\nSınav Sonucu:'), 
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -219,7 +215,7 @@ class _ReviewsExamState extends State<ReviewsExam> {
       String userId = FirebaseAuth.instance.currentUser?.uid ?? '';
       await FirebaseFirestore.instance.collection('users').doc(userId).update({
         'reviews-exam-result': {
-          'examTitle': widget.examTitle, // İlgili sınav başlığı eklendi
+          'examTitle': widget.examTitle, 
           'Doğru': correctCount,
           'Yanlış': incorrectCount,
         }

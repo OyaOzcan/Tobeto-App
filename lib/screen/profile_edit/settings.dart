@@ -22,20 +22,10 @@ class _SettingsTabState extends State<SettingsTab> {
     User? user = _auth.currentUser;
     if (user != null) {
       final String userUid = user.uid;
-
-      // Firestore'daki kullanıcı verileri ve alt koleksiyonları sil
       await deleteUserAndSubcollections(userUid);
-
-      // Firebase Storage'daki kullanıcı dosyalarını sil
       await deleteUserStorageFiles(userUid);
-
-      // Kullanıcının Firebase Authentication üyeliğini sil
       await user.delete();
-
-      // Kullanıcının oturumunu kapat
       await _auth.signOut();
-
-      // Kullanıcıyı giriş ekranına yönlendir
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (context) => LoginScreen()),
         (Route<dynamic> route) => false,
@@ -66,8 +56,6 @@ class _SettingsTabState extends State<SettingsTab> {
           await doc.reference.delete();
         }
       }
-
-      // Ana kullanıcı belgesini sil
       await _firestore.collection('users').doc(userUid).delete();
     } catch (e) {
       print("Firestore'da kullanıcı ve alt koleksiyonları silerken hata: $e");
@@ -76,10 +64,7 @@ class _SettingsTabState extends State<SettingsTab> {
 
   Future<void> deleteUserStorageFiles(String userUid) async {
     try {
-      // Profil resmini sil
       await _storage.ref('profilePictures/$userUid.jpg').delete();
-
-      // Sertifikaları sil
       final ListResult result =
           await _storage.ref('certificates/$userUid').listAll();
       for (var file in result.items) {

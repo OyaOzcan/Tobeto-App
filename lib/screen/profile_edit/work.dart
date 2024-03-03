@@ -51,13 +51,9 @@ class _WorkTabState extends State<WorkTab> {
 
   @override
   TextEditingController _emailController = TextEditingController();
-
   TextEditingController _descriptionController = TextEditingController();
-
   TextEditingController _startWorkDateController = TextEditingController();
-
   TextEditingController _endWorkDateController = TextEditingController();
-
   TextEditingController _companyController = TextEditingController();
   TextEditingController _positionController = TextEditingController();
   TextEditingController _sectorController = TextEditingController();
@@ -190,16 +186,10 @@ class _WorkTabState extends State<WorkTab> {
     if (userId == null) return;
 
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
-
-    // "users" koleksiyonundaki kullanıcı belgesine referans
     final DocumentReference userDocRef =
         firestore.collection('users').doc(userId);
-
-    // "workExperiences" alt koleksiyonuna yeni bir iş deneyimi belgesi ekle
     final CollectionReference workExperiences =
         userDocRef.collection('workExperiences');
-
-    // Yeni iş deneyimi belgesi oluştur
     await workExperiences.add({
       'company': _companyController.text,
       'position': _positionController.text,
@@ -208,10 +198,7 @@ class _WorkTabState extends State<WorkTab> {
       'endDate': _endWorkDateController.text.trim(),
       'description': _descriptionController.text,
       'city': _selectedWorkCity,
-      // Diğer alanlar buraya eklenebilir
     });
-
-    // Başarılı kayıt sonrası kullanıcıyı önceki sayfaya yönlendir
     Navigator.pop(context, true);
   }
 }

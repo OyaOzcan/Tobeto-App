@@ -19,7 +19,7 @@ class _ReviewsdescriptioncardState extends State<Reviewsdescriptioncard> {
           'Kazanım Odaklı Testler',
           'Dijital gelişim kategorisindeki \neğitimlere başlamadan \nönce'
               ' konuyla ilgili bilgin ölçülür \nve seviyene göre yönlendirilirsin.',
-          false, // İlk kart için özel metin yok
+          false, 
         ),
         _buildCard(
           context,
@@ -27,7 +27,7 @@ class _ReviewsdescriptioncardState extends State<Reviewsdescriptioncard> {
           'Sertifika alabilmen için,\neğitim yolculuğunun sonunda\n'
               'teknik yetkinliklerin\nve kod bilgin ölçülür.\n\n\n'
               '4400+ soru | \n30+ programlama dili\n 4 zorluk seviyesi\n\n',
-          true, // İkinci kart için özel metin var
+          true, 
         ),
       ],
     );

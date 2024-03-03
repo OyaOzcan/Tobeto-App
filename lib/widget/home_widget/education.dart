@@ -1,8 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'education_video.dart'; // Video sayfası için gerekli
-
+import 'education_video.dart'; 
 class EducationPage extends StatefulWidget {
   const EducationPage({Key? key}) : super(key: key);
 
@@ -13,8 +12,7 @@ class EducationPage extends StatefulWidget {
 class _EducationPageState extends State<EducationPage> {
   @override
   Widget build(BuildContext context) {
-    final userId = FirebaseAuth.instance.currentUser?.uid; // Kullanıcı ID'si
-
+    final userId = FirebaseAuth.instance.currentUser?.uid; 
     return Scaffold(
       appBar: AppBar(
         title: Text('Eğitimlerim'),
@@ -44,8 +42,8 @@ class _EducationPageState extends State<EducationPage> {
                       title: doc['title'],
                       subtitle: doc['subtitle'],
                       buttonText: 'Eğitime Git',
-                      imageUrl: doc['imageUrl'], // Resim URL'si
-                      videoURL: doc['videoURL'], // Video URL'si
+                      imageUrl: doc['imageUrl'], 
+                      videoURL: doc['videoURL'],
                     );
                   }).toList(),
                 );
@@ -90,7 +88,7 @@ class EducationCard extends StatelessWidget {
         ),
         elevation: 5,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start, // Sol başa hizalama
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
               borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
@@ -105,7 +103,7 @@ class EducationCard extends StatelessWidget {
               padding: EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment:
-                    CrossAxisAlignment.start, // İçerikleri sol başa hizala
+                    CrossAxisAlignment.start, 
                 children: [
                   Text(
                     title,
@@ -134,8 +132,8 @@ class EducationCard extends StatelessWidget {
                     child: Text(buttonText),
                     style: ElevatedButton.styleFrom(
                       backgroundColor:
-                          Theme.of(context).colorScheme.primary, // Buton rengi
-                      minimumSize: Size(double.infinity, 38), // Buton boyutu
+                          Theme.of(context).colorScheme.primary, 
+                      minimumSize: Size(double.infinity, 38),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),

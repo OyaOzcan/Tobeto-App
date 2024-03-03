@@ -39,28 +39,28 @@ class _AnnouncementAndNewsState extends State<AnnouncementAndNews> {
     showModalBottomSheet(
       context: context,
       isScrollControlled:
-          true, // Modalın ekran boyutuna göre ayarlanmasını sağlar.
+          true, 
       builder: (BuildContext bc) {
         return FractionallySizedBox(
-          heightFactor: 0.7, // Modalın ekranın %70'ini kaplamasını sağlar.
+          heightFactor: 0.7, 
           child: Container(
-            padding: EdgeInsets.all(24), // İçerik padding'i artırıldı.
+            padding: EdgeInsets.all(24), 
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment:
-                  MainAxisAlignment.center, // İçeriği merkeze alır.
+                  MainAxisAlignment.center, 
               children: <Widget>[
                 Text(
                   announcement['title'],
-                  textAlign: TextAlign.center, // Başlığı merkeze alır.
+                  textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       color: Theme.of(context).colorScheme.onBackground),
                 ),
                 SizedBox(
-                    height: 16), // Başlık ve içerik arasında boşluk bırakır.
+                    height: 16),
                 Text(
                   announcement['content'],
-                  textAlign: TextAlign.center, // İçeriği merkeze alır.
+                  textAlign: TextAlign.center, 
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: Theme.of(context).colorScheme.onBackground),
                 ),

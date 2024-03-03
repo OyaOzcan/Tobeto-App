@@ -162,8 +162,6 @@ class _LanguageTabState extends State<LanguageTab> {
     if (userId == null) return;
 
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
-
-    // Kullanıcının dillerini 'languages' alt koleksiyonuna kaydediyoruz.
     await firestore
         .collection('users')
         .doc(userId)
@@ -172,13 +170,9 @@ class _LanguageTabState extends State<LanguageTab> {
       'language': _selectedLanguage,
       'level': _selectedLanguageLevel,
     });
-
-    // Kullanıcıya bilgi vermek için snackbar gösterimi
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text('Dil bilgileri başarıyla kaydedildi.')),
     );
-
-    // Kayıt sonrası önceki sayfaya dön
     Navigator.pop(context, true);
   }
 }

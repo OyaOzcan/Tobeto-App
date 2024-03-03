@@ -123,17 +123,11 @@ void showReviewCategoryDialog(BuildContext context, String title) {
 }
 
 Future<Map<String, dynamic>> fetchReviewData(String title) async {
-  // Firestore'dan ilgili review verilerini çek
-  // Kullanıcının oturum açtığı kullanıcı kimliğiyle belge al
   String? userId = FirebaseAuth.instance.currentUser?.uid;
   DocumentSnapshot userDoc =
       await FirebaseFirestore.instance.collection('users').doc(userId).get();
-
-  // Kullanıcının reviews-card array'inden ilgili incelemeyi bul
   List<dynamic> reviewCards = userDoc['reviews-card'] ?? [];
   Map<String, dynamic>? reviewData;
-
-  // Incelemeler arasında dolaşarak ilgili incelemeyi bul
   for (String reviewId in reviewCards) {
     DocumentSnapshot reviewDoc = await FirebaseFirestore.instance
         .collection('reviews-card')
@@ -141,7 +135,7 @@ Future<Map<String, dynamic>> fetchReviewData(String title) async {
         .get();
     if (reviewDoc.exists && reviewDoc['title'] == title) {
       reviewData = {
-        'subtitle': reviewDoc['subtitle'], // Subtitle eklendi
+        'subtitle': reviewDoc['subtitle'], 
         'exam duration': reviewDoc['exam duration'],
         'number of questions': reviewDoc['number of questions'],
         'question type': reviewDoc['question type'],
